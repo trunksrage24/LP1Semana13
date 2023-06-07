@@ -47,6 +47,17 @@ namespace MultipleStuff
             return (Min: pair.Min, Max: pair.Max);
         }
 
-        
+        // internal class to store the minimum and maximum values
+        private class MinMaxPair
+        {
+            public double Min { get; private set; } = double.MaxValue;
+            public double Max { get; private set; } = double.MinValue;
+
+            public void UpdateMinMax(double value)
+            {
+                Min = Math.Min(Min, value);
+                Max = Math.Max(Max, value);
+            }
+        }
     }
 }
