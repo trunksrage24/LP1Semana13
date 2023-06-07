@@ -3,25 +3,30 @@
 namespace MultipleStuff
 {
 
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main()
         {
-            // Create an instance of SuperList containing multiple numbers
-            SuperList superList = new SuperList(new double[] { 10.5, 7.2, 15.8, 3.6, 9.1 });
+            SuperList superList = new SuperList();
+            superList.Add(8.8);
+            superList.Add(1.4);
+            superList.Add(78.5);
+            superList.Add(79.7);
 
-            // Get and print the minimum and maximum using the three implemented methods
-            var minMax1 = superList.GetMinMax1();
-            Console.WriteLine($"Minimum: {minMax1.Min}, Maximum: {minMax1.Max}");
+            double min1, max1;
+            (double min2, double max2) = superList.GetMinMax1(out min1,
+                                                              out max1);
+            Console.WriteLine($"Versão 1: Min = {min1}, Max = {max1}");
 
-            var minMax2 = superList.GetMinMax2();
-            Console.WriteLine($"Minimum: {minMax2.Min}, Maximum: {minMax2.Max}");
+            (double min3, double max3) = superList.GetMinMax2();
+            Console.WriteLine($"Versão 2: Min = {min3}, Max = {max3}");
 
-            var minMax3 = superList.GetMinMax3();
-            Console.WriteLine($"Minimum: {minMax3.Min}, Maximum: {minMax3.Max}");
+            double min4 = double.MaxValue, max4 = double.MinValue;
+            superList.GetMinMax3(ref min4, ref max4);
+            Console.WriteLine($"Versão 3: Min = {min4}, Max = {max4}");
 
-            var minMax4 = superList.GetMinMax4();
-            Console.WriteLine($"Minimum: {minMax4.Min}, Maximum: {minMax4.Max}");
+            (double Min5, double Max5) = superList.GetMinMax4();
+            Console.WriteLine($"Versão 4: Min = {Min5}, Max = {Max5}");
         }
     }
 }

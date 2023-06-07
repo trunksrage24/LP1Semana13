@@ -8,88 +8,63 @@ namespace MultipleStuff
 
     public class SuperList : List<double>
     {
-        // Constructor for SuperList
-        public SuperList(IEnumerable<double> collection) : base(collection)
+        public (double min, double max) GetMinMax1(out double min, out double max)
         {
+            min = double.MaxValue;
+            max = double.MinValue;
+
+            foreach (double number in this)
+            {
+                if (number < min)
+                    min = number;
+                if (number > max)
+                    max = number;
+            }
+
+            return (min, max);
         }
 
-        // Method to get the minimum and maximum values using out parameters
-        public (double Min, double Max) GetMinMax1()
+        public (double min, double max) GetMinMax2()
         {
             double min = double.MaxValue;
             double max = double.MinValue;
 
-            foreach (var item in this)
+            foreach (double number in this)
             {
-                UpdateMinMax(out min, out max, item);
+                if (number < min)
+                    min = number;
+                if (number > max)
+                    max = number;
             }
 
-            return (Min: min, Max: max);
+            return (min, max);
         }
 
-        // Helper method to update the minimum and maximum values
-        private void UpdateMinMax(out double min, out double max, double value)
+        public void GetMinMax3(ref double min, ref double max)
         {
-            min = Math.Min(min, value);
-            max = Math.Max(max, value);
-        }
+            min = double.MaxValue;
+            max = double.MinValue;
 
-        // Method to get the minimum and maximum values using a nested class
-        public (double Min, double Max) GetMinMax2()
-        {
-            MinMaxPair pair = new MinMaxPair();
-
-            foreach (var item in this)
+            foreach (double number in this)
             {
-                pair.UpdateMinMax(item);
-            }
-
-            return (Min: pair.Min, Max: pair.Max);
-        }
-
-        // internal class to store the minimum and maximum values
-        private class MinMaxPair
-        {
-            public double Min { get; private set; } = double.MaxValue;
-            public double Max { get; private set; } = double.MinValue;
-
-            public void UpdateMinMax(double value)
-            {
-                Min = Math.Min(Min, value);
-                Max = Math.Max(Max, value);
+                if (number < min)
+                    min = number;
+                if (number > max)
+                    max = number;
             }
         }
 
-        // Method to get the minimum and maximum values using reference tuples
-        public (double Min, double Max) GetMinMax3()
-        {
-            double min = double.MaxValue;
-            double max = double.MinValue;
-
-            foreach (var item in this)
-            {
-                UpdateMinMax(ref min, ref max, item);
-            }
-
-            return (Min: min, Max: max);
-        }
-
-        // Method to update the minimum and maximum values using references
-        private void UpdateMinMax(ref double min, ref double max, double value)
-        {
-            min = Math.Min(min, value);
-            max = Math.Max(max, value);
-        }
-
-        // Method to get the minimum and maximum values using named value tuples
         public (double Min, double Max) GetMinMax4()
         {
             double min = double.MaxValue;
             double max = double.MinValue;
 
-            foreach (var item in this)
+            foreach (double number in this)
             {
-                UpdateMinMax(ref min, ref max, item);
+                if (number < min)
+                    min = number;
+                if (number > max)
+                    max = number;
             }
 
             return (Min: min, Max: max);
