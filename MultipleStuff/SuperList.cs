@@ -73,5 +73,12 @@ namespace MultipleStuff
 
             return (Min: min, Max: max);
         }
+
+        // Method to update the minimum and maximum values using references
+        private void UpdateMinMax(ref double min, ref double max, double value)
+        {
+            min = Math.Min(min, value);
+            max = Math.Max(max, value);
+        }
     }
 }
