@@ -80,5 +80,19 @@ namespace MultipleStuff
             min = Math.Min(min, value);
             max = Math.Max(max, value);
         }
+
+        // Method to get the minimum and maximum values using named value tuples
+        public (double Min, double Max) GetMinMax4()
+        {
+            double min = double.MaxValue;
+            double max = double.MinValue;
+
+            foreach (var item in this)
+            {
+                UpdateMinMax(ref min, ref max, item);
+            }
+
+            return (Min: min, Max: max);
+        }
     }
 }
