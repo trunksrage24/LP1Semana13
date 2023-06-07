@@ -26,5 +26,12 @@ namespace MultipleStuff
 
             return (Min: min, Max: max);
         }
+
+        // Helper method to update the minimum and maximum values
+        private void UpdateMinMax(out double min, out double max, double value)
+        {
+            min = Math.Min(min, value);
+            max = Math.Max(max, value);
+        }
     }
 }
