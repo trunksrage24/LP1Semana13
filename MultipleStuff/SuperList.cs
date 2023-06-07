@@ -33,5 +33,20 @@ namespace MultipleStuff
             min = Math.Min(min, value);
             max = Math.Max(max, value);
         }
+
+        // Method to get the minimum and maximum values using a nested class
+        public (double Min, double Max) GetMinMax2()
+        {
+            MinMaxPair pair = new MinMaxPair();
+
+            foreach (var item in this)
+            {
+                pair.UpdateMinMax(item);
+            }
+
+            return (Min: pair.Min, Max: pair.Max);
+        }
+
+        
     }
 }
